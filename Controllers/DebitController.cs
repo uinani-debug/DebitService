@@ -45,6 +45,24 @@ namespace DebitLibrary.API.Controllers
             return Accepted();
         }
 
+        [Route("TestOracle")]
+        [HttpGet]
+        public ActionResult<string> Test()
+        {
+            var CreditRequest = new Debit
+            {
+                AccountIdentifier = "54678947",
+                PaymentReference = "test credit oracle",
+                TransferAmount = 100
+            };
+
+            if (Request != null)
+            {
+                _DebitLibraryRepository.DebitAmount(CreditRequest);
+            }
+
+            return Accepted();
+        }
 
 
         private async void subscribeEvent()
