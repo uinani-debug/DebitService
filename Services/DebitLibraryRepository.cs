@@ -33,7 +33,8 @@ namespace DebitLibrary.API.Services
                 p.Add("accountNumber", req.AccountIdentifier, DbType.String, ParameterDirection.Input);
                 p.Add("amount", req.TransferAmount, DbType.Double, ParameterDirection.Input);
 
-                string query = "update tb_mae_account set [amount]=[amount] - @amount where account_identifier= @accountNumber";
+                //winstring query = "update tb_mae_account set [amount]=[amount] - @amount where account_identifier= @accountNumber";
+                string query = "update tb_mae_mort_account set [available_balance]= [available_balance] - @amount,  [current_balance]=[current_balance] - @amount where account_identifier= @accountNumber";
                 var x = c.Query(query,p);
                                 
                 c.Close();
